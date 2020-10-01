@@ -36,7 +36,7 @@
           <h2>Featured Mars Image</h2>
           <!-- if images is False/None/non-existent, then default to error message -->
           <img
-            src="{{mars.featured_image | default('static/images/error.png', true) }}"
+            src="{{mars.featured_image | default('static/150.png', true) }}"
             class="img-responsive"
             alt="Responsive image"
           />
@@ -52,33 +52,36 @@
         </div>
       </div>
       <hr>
+      {% if mars.hemispheres is defined %} 
       <div class="row">
         <h2>Mars' Hemispheres</h2>
         <div class="col-md-3">
             <div> 
-              {{mars.hemispheres.0.title}}
+              {{mars.hemispheres.0.title | safe}}
             </div>
-            <img src="{{mars.hemispheres.0.img_url}}" class="img-responsive" alt="{{mars.hemispheres.0.title}}"/>
+            <img src="{{mars.hemispheres.0.img_url | default('static/150.png', true)}}" class="img-responsive" alt="{{mars.hemispheres.0.title | safe}}"/>
         </div>
           <div class="col-md-3">
             <div> 
-              {{mars.hemispheres.1.title}}
+              {{mars.hemispheres.1.title | safe}}
             </div>
-            <img src="{{mars.hemispheres.1.img_url}}" class="img-responsive" alt="{{mars.hemispheres.1.title}}"/>
+            <img src="{{mars.hemispheres.1.img_url | default('static/150.png', true)}}" class="img-responsive" alt="{{mars.hemispheres.1.title | safe}}"/>
           </div>
           <div class="col-md-3">
             <div> 
-              {{mars.hemispheres.2.title}}
+              {{mars.hemispheres.2.title | safe}}
             </div>
-            <img src="{{mars.hemispheres.2.img_url}}" class="img-responsive" alt="{{mars.hemispheres.2.title}}"/>
+            <img src="{{mars.hemispheres.2.img_url | default('static/150.png', true)}}" class="img-responsive" alt="{{mars.hemispheres.2.title | safe}}"/>
           </div>
           <div class="col-md-3">
             <div> 
-              {{mars.hemispheres.3.title}}
+              {{mars.hemispheres.3.title | safe}}
             </div>
-            <img src="{{mars.hemispheres.3.img_url}}" class="img-responsive" alt="{{mars.hemispheres.3.title}}"/>
+            <img src="{{mars.hemispheres.3.img_url | default('static/150.png', true)}}" class="img-responsive" alt="{{mars.hemispheres.3.title | safe}}"/>
             </div>
       </div>
+      {% else %}
+      {% endif %}
     </div>
   </body>
 </html>

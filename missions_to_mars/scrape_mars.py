@@ -30,8 +30,7 @@ def mars_news(browser):
     # Visit the mars nasa news site
     featured_url = 'https://mars.nasa.gov/news/'
     browser.visit(featured_url)
-    # Optional delay for loading the page
-    browser.is_element_present_by_css("ul.item_list li.slide", wait_time=1)
+    time.sleep(5)
     # Create html object, create bs object, parse with html
     img_html = browser.html
     news_soup = soup(img_html, 'html.parser')
@@ -39,10 +38,10 @@ def mars_news(browser):
     try:
         # Use the parent element to find the first 'a' tag and save it as 'news_title'
         news_title = news_soup.find('div', class_='list_text').find('div', class_='content_title').text
-        news_p = news_soup.find('div', class_='article_teaser_body').text        
+        news_paragraph = news_soup.find('div', class_='article_teaser_body').text        
     except AttributeError:
         return None, None
-    return news_title, news_p
+    return news_title, news_paragraph
     
 def featured_image(browser):
     # Visit URL
@@ -71,14 +70,17 @@ def featured_image(browser):
 
 def mars_facts():
     # Add try/except for error handling
+    #identify link for next scrape
+    facts_url = 'https://space-facts.com/mars/' 
     try:
-        # Use 'read_html' to scrape the facts table into a dataframe
-        mars_info_df = pd.read_html('http://space-facts.com/mars/')[0]
+        #use pandas to read the table from the webpage above
+        tables = pd.read_html(facts_url)
+        mars_info_df = tables[0]
     except BaseException:
         return None
     # Assign columns and set index of dataframe
     mars_info_df.columns=['Description', 'Values']
-    mars_info_df.set_index('Description', inplace=True)
+    mars_info_df = mars_info_df.set_index('Description', inplace=False)
     # Convert dataframe into HTML format, add bootstrap
     return mars_info_df.to_html(classes="table table-striped")
 
