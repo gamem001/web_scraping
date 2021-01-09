@@ -4,7 +4,7 @@ In this project, a web application is built that scrapes various websites for da
 
 ## Step 1 - Scraping
 
-Using Jupyter Notebook, BeautifulSoup, Pandas, and Requests/Splinter, the [NASA Mars News Site](https://mars.nasa.gov/news/) is scraped in order to collect information:
+Using Jupyter Notebook, BeautifulSoup, Pandas, and Requests/Splinter, various Nasa Mars sites are scraped to gather information for the flask app.
 
 
 ### NASA Mars News
